@@ -44,8 +44,6 @@ def separate():
             out.save('.gif_progress_bar_tmp/foo{}.png'.format(i))
 
 def line():
-    from PIL import Image
-
     for i in range(gif_frames_number):
         im = Image.open(".gif_progress_bar_tmp/foo{}.png".format(i))
         pixels = im.load()
