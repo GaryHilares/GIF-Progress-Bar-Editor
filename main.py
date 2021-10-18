@@ -5,8 +5,6 @@ if len(sys.argv) == 1:
     print('Insufficient arguments')
     sys.exit()
 
-width, height = Image.open(sys.argv[1]).size
-
 def get_gif_frames_and_duration(gif_filename):
     gif = Image.open(sys.argv[1])
     gif_frames = []
@@ -39,6 +37,7 @@ def get_gif_frames_and_duration(gif_filename):
 
 def add_progress_bar_to_images(gif_frames):
     for i in range(len(gif_frames)):
+        width, height = gif_frames[i].size
         pixels = gif_frames[i].load()
         for j in range(int(width*i/len(gif_frames))):
             pixels[j, height-3] = (0, 0, 255)
