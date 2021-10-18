@@ -74,9 +74,10 @@ def main():
     filename = arguments[1]
     rgb_color = colors[arguments['color']] if 'color' in arguments and arguments['color'] in colors else colors["blue"]
     bar_height = int(arguments['height']) if 'height' in arguments and arguments['height'].isnumeric() else 3
+    output_file = arguments['out'] if 'out' in arguments else 'progress_bar_{}'.format(filename)
     frames, duration = get_gif_frames_and_duration(filename)
     frames_with_progress_bar = add_progress_bar_to_images(frames,bar_height,rgb_color)
-    assemble_and_save_gif('progress_bar_{}'.format(filename),duration,frames_with_progress_bar)
+    assemble_and_save_gif(output_file,duration,frames_with_progress_bar)
 
 if __name__ == '__main__':
     main()
