@@ -23,3 +23,11 @@ py main.py ${your filename}
 ```
 
 That's it! The script does the rest.
+
+## License
+All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
+
+## Contributors
+Thanks to these wonderful people for making GIF Progress Bar Editor possible!
+
+<p align="center"><a href="https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/graphs/contributors"><img src="https://contrib.rocks/image?repo=GaryNLOL/GIF_Progress_Bar_Editor" /></a></p>
