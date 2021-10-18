@@ -14,7 +14,7 @@
 GIF Progress Bar Editor is a tool that provides an easy and fast way to add a progress bar to your GIF.
 
 ### Dependencies
-- PIL
+- [Pillow](https://pillow.readthedocs.io/en/stable/#).
 
 ## Usage
 ### Commands
