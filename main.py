@@ -39,14 +39,13 @@ def get_gif_frames_and_duration(gif_filename):
             gif_frames.append(out.copy())
     return [gif_frames, gif.info['duration']]
 
-def add_progress_bar_to_images(gif_frames,rgb_color):
+def add_progress_bar_to_images(gif_frames,bar_height,rgb_color):
     for i in range(len(gif_frames)):
         width, height = gif_frames[i].size
         pixels = gif_frames[i].load()
         for j in range(int(width*i/len(gif_frames))):
-            pixels[j, height-3] = rgb_color
-            pixels[j, height-2] = rgb_color
-            pixels[j, height-1] = rgb_color
+            for k in range(1,bar_height+1):
+                pixels[j, height-k] = rgb_color
     return gif_frames
 
 def assemble_and_save_gif(target_filename,gif_duration,gif_frames):
@@ -61,8 +60,9 @@ def main():
         sys.exit()
     filename = sys.argv[1]
     rgb_color = colors[sys.argv[2]] if len(sys.argv) >= 3 and sys.argv[2] in colors else colors["blue"]
+    bar_height = int(sys.argv[3]) if len(sys.argv) >= 4 and sys.argv[3].isnumeric() else 3
     frames, duration = get_gif_frames_and_duration(filename)
-    frames_with_progress_bar = add_progress_bar_to_images(frames,rgb_color)
+    frames_with_progress_bar = add_progress_bar_to_images(frames,bar_height,rgb_color)
     assemble_and_save_gif('progress_bar_{}'.format(filename),duration,frames_with_progress_bar)
 
 if __name__ == '__main__':
