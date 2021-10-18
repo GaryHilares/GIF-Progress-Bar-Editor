@@ -10,7 +10,7 @@
   <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryNLOL/GIF_Progress_Bar_Editor?style=for-the-badge">
 </p>
 
-## What is GIF_Progress_Bar_Editor?
+## What is GIF Progress Bar Editor?
 GIF Progress Bar Editor is a tool that provides an easy and fast way to add a progress bar to your GIF.
 
 ### Dependencies
