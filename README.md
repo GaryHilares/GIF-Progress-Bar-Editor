@@ -10,13 +10,20 @@
   <img alt="badge-codesize" src="https://img.shields.io/github/languages/code-size/GaryNLOL/GIF_Progress_Bar_Editor?style=for-the-badge">
 </p>
 
-## What is GIF_Progress_Bar_Editor?
+## What is GIF Progress Bar Editor?
 GIF Progress Bar Editor is a tool that provides an easy and fast way to add a progress bar to your GIF.
 
 ### Dependencies
-- PIL
+- [Pillow](https://pillow.readthedocs.io/en/stable/#).
 
 ## Usage
+### Installation
+Source code:
+1. Clone the GitHub repository.
+2. Install the dependencies with `pip install -r requirements.txt`.
+
+That's it!
+
 ### Commands
 Just use the command:
 ```python3
