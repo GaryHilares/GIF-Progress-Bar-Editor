@@ -7,10 +7,10 @@ if len(sys.argv) == 1:
 
 gif = Image.open(sys.argv[1])
 gif_duration = gif.info['duration']
-gif_frames_number = gif.n_frames
 width, height = gif.size
 
 def get_frames(gif_filename):
+    gif = Image.open(sys.argv[1])
     gif_frames = []
     pal = gif.getpalette()
     prev = gif.convert('RGBA')
@@ -40,9 +40,9 @@ def get_frames(gif_filename):
     return gif_frames
 
 def add_progress_bar_to_images(gif_frames):
-    for i in range(gif_frames_number):
+    for i in range(len(gif_frames)):
         pixels = gif_frames[i].load()
-        for j in range(int(width*i/gif_frames_number)):
+        for j in range(int(width*i/len(gif_frames))):
             pixels[j, height-3] = (0, 0, 255)
             pixels[j, height-2] = (0, 0, 255)
             pixels[j, height-1] = (0, 0, 255)
