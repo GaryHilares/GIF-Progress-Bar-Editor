@@ -20,7 +20,7 @@ GIF Progress Bar Editor is a tool that provides an easy and fast way to add a pr
 ### Installation
 Source code:
 1. Clone the GitHub repository.
-2. Install the requirements with `pip install -r requirements.txt`.
+2. Install the dependencies with `pip install -r requirements.txt`.
 
 That's it!
 
