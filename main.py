@@ -10,7 +10,7 @@ colors = {
 }
 
 def get_gif_frames_and_duration(gif_filename):
-    gif = Image.open(sys.argv[1])
+    gif = Image.open(gif_filename)
     gif_frames = []
     gif_duration = gif.info['duration']
     pal = gif.getpalette()
