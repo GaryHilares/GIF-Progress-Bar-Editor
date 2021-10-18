@@ -28,6 +28,10 @@ There are also optional parameters that allow you to personalize your gif:
 ```python3
 py main.py ${your filename} color=${your color} out=${your output filename} height=${your progress bar height}
 ```
+Where:
+`color` is a name color (Currently only colors in `['white','red','green','blue','black']` are supported) representing the color of the progress bar.
+`height` is an integer representing the height of the progress bar.
+`out` is a string representing the output filename.
 
 ## License
 All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
