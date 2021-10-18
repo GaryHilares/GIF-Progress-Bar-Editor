@@ -40,12 +40,12 @@ def get_gif_frames_and_duration(gif_filename):
     return [gif_frames, gif.info['duration']]
 
 def add_progress_bar_to_images(gif_frames,bar_height,rgb_color):
-    for i in range(len(gif_frames)):
-        width, height = gif_frames[i].size
-        pixels = gif_frames[i].load()
-        for j in range(int(width*i/len(gif_frames))):
-            for k in range(1,bar_height+1):
-                pixels[j, height-k] = rgb_color
+    for frame_index in range(len(gif_frames)):
+        width, height = gif_frames[frame_index].size
+        pixels = gif_frames[frame_index].load()
+        for x in range(int(width*frame_index/len(gif_frames))):
+            for y_offset in range(1,bar_height+1):
+                pixels[x, height-y_offset] = rgb_color
     return gif_frames
 
 def assemble_and_save_gif(target_filename,gif_duration,gif_frames):
@@ -54,13 +54,26 @@ def assemble_and_save_gif(target_filename,gif_duration,gif_frames):
                    save_all=True,
                    duration=gif_duration, loop=0)
 
+def parse_arguments(raw_arguments):
+    arguments = {}
+    positional_arguments = 0
+    for raw_argument in raw_arguments:
+        if '=' in raw_argument:
+            key, value = raw_argument.split('=',1)
+            arguments[key] = value
+        else:
+            arguments[positional_arguments] = raw_argument
+            positional_arguments += 1
+    return arguments
+
 def main():
-    if len(sys.argv) == 1:
-        print('Insufficient arguments')
+    arguments = parse_arguments(sys.argv)
+    if 1 not in arguments:
+        print('Error: At least 1 positional argument is required.')
         sys.exit()
-    filename = sys.argv[1]
-    rgb_color = colors[sys.argv[2]] if len(sys.argv) >= 3 and sys.argv[2] in colors else colors["blue"]
-    bar_height = int(sys.argv[3]) if len(sys.argv) >= 4 and sys.argv[3].isnumeric() else 3
+    filename = arguments[1]
+    rgb_color = colors[arguments['color']] if 'color' in arguments and arguments['color'] in colors else colors["blue"]
+    bar_height = int(arguments['height']) if 'height' in arguments and arguments['height'].isnumeric() else 3
     frames, duration = get_gif_frames_and_duration(filename)
     frames_with_progress_bar = add_progress_bar_to_images(frames,bar_height,rgb_color)
     assemble_and_save_gif('progress_bar_{}'.format(filename),duration,frames_with_progress_bar)
