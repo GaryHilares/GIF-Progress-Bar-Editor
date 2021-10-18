@@ -1,6 +1,5 @@
 from PIL import Image, ImageSequence
 import sys
-import json
 
 colors = {
     "white": (255,255,255),
