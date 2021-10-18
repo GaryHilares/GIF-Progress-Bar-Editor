@@ -18,15 +18,15 @@ GIF Progress Bar Editor is a tool that provides an easy and fast way to add a pr
 
 ## Usage
 Just use the command:
-```
+```python3
 py main.py ${your filename}
 ```
 
 That's it! The script does the rest.
 
-You can also choose a color of our selection. To do so, just use the command
-```
-py main.py ${your filename} ${color name}
+There are also optional parameters that allow you to personalize your gif:
+```python3
+py main.py ${your filename} color=${your color} out=${your output filename} height=${your progress bar height}
 ```
 
 ## License
