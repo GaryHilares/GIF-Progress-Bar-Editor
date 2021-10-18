@@ -22,4 +22,4 @@ Just use the command:
 py main.py ${your filename}
 ```
 
-The script does the rest.
+That's it! The script does the rest.
