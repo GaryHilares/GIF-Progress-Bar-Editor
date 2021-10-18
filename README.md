@@ -17,6 +17,7 @@ GIF Progress Bar Editor is a tool that provides an easy and fast way to add a pr
 - PIL
 
 ## Usage
+### Commands
 Just use the command:
 ```python3
 py main.py ${your filename}
@@ -32,6 +33,21 @@ Where:
 - `color` is a name color (Currently only colors in `['white','red','green','blue','black']` are supported) representing the color of the progress bar.
 - `height` is an integer representing the height of the progress bar.
 - `out` is a string representing the output filename.
+
+### Example
+Before:
+
+![Supple-Crystal](https://user-images.githubusercontent.com/46727048/137753081-ce02743a-720e-4200-9b8b-2b540338b8da.gif)
+
+Command:
+
+`py main.py Supple-Crystal.gif color=red height=5 out=my_gif.gif`
+
+After:
+
+![my_gif](https://user-images.githubusercontent.com/46727048/137754676-2c59810c-d977-4b91-ae4b-959382c36a31.gif)
+
+Image taken from [Supple Crystal](https://github.com/GaryNLOL/Supple-Crystal/).
 
 ## License
 All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
