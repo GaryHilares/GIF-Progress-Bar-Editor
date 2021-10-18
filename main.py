@@ -12,6 +12,7 @@ colors = {
 def get_gif_frames_and_duration(gif_filename):
     gif = Image.open(sys.argv[1])
     gif_frames = []
+    gif_duration = gif.info['duration']
     pal = gif.getpalette()
     prev = gif.convert('RGBA')
     prev_dispose = True
@@ -37,7 +38,7 @@ def get_gif_frames_and_duration(gif_filename):
             out = prev.copy()
             out.paste(frame, bbox, frame.convert('RGBA'))
             gif_frames.append(out.copy())
-    return [gif_frames, gif.info['duration']]
+    return [gif_frames, gif_duration]
 
 def add_progress_bar_to_images(gif_frames,bar_height,rgb_color):
     for frame_index in range(len(gif_frames)):
