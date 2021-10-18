@@ -53,14 +53,10 @@ def ensamble():
                    save_all=True,
                    duration=gif_duration, loop=0)
 
-def clean():
-    pass
-
 def main():
     separate()
     line()
     ensamble()
-    clean()
 
 if __name__ == '__main__':
     main()
