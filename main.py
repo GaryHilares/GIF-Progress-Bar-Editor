@@ -16,11 +16,10 @@ def separate():
         os.mkdir('.gif_progress_bar_tmp')
     except:
         pass
-    img = Image.open(gif_filename)
-    pal = img.getpalette()
-    prev = img.convert('RGBA')
+    pal = gif.getpalette()
+    prev = gif.convert('RGBA')
     prev_dispose = True
-    for i, frame in enumerate(ImageSequence.Iterator(img)):
+    for i, frame in enumerate(ImageSequence.Iterator(gif)):
         dispose = frame.dispose
 
         if frame.tile:
@@ -38,7 +37,7 @@ def separate():
             prev_dispose = False
         else:
             if prev_dispose:
-                prev = Image.new('RGBA', img.size, (0, 0, 0, 0))
+                prev = Image.new('RGBA', gif.size, (0, 0, 0, 0))
             out = prev.copy()
             out.paste(frame, bbox, frame.convert('RGBA'))
             out.save('.gif_progress_bar_tmp/foo{}.png'.format(i))
