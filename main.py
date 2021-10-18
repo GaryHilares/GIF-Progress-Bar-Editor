@@ -10,9 +10,9 @@ gif = Image.open(gif_filename)
 gif_duration = gif.info['duration']
 gif_frames_number = gif.n_frames
 width, height = gif.size
-gif_frames = []
 
 def get_frames():
+    gif_frames = []
     pal = gif.getpalette()
     prev = gif.convert('RGBA')
     prev_dispose = True
@@ -38,25 +38,25 @@ def get_frames():
             out = prev.copy()
             out.paste(frame, bbox, frame.convert('RGBA'))
             gif_frames.append(out.copy())
+    return gif_frames
 
-def add_progress_bar_to_images():
+def add_progress_bar_to_images(gif_frames):
     for i in range(gif_frames_number):
         pixels = gif_frames[i].load()
         for j in range(int(width*i/gif_frames_number)):
             pixels[j, height-3] = (0, 0, 255)
             pixels[j, height-2] = (0, 0, 255)
             pixels[j, height-1] = (0, 0, 255)
+    return gif_frames
 
-def assemble_and_save_gif():
+def assemble_and_save_gif(gif_frames):
     gif_frames[0].save('progress_bar_{}'.format(gif_filename), format='GIF',
                    append_images=gif_frames[1:],
                    save_all=True,
                    duration=gif_duration, loop=0)
 
 def main():
-    get_frames()
-    add_progress_bar_to_images()
-    assemble_and_save_gif()
+    assemble_and_save_gif(add_progress_bar_to_images(get_frames()))
 
 if __name__ == '__main__':
     main()
