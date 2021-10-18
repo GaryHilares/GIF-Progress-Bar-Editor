@@ -68,7 +68,11 @@ def clean():
         os.remove('.gif_progress_bar_tmp/foo{}.png'.format(i))
     os.rmdir('.gif_progress_bar_tmp')
 
-separate()
-line()
-ensamble()
-clean()
+def main():
+    separate()
+    line()
+    ensamble()
+    clean()
+
+if __name__ == '__main__':
+    main()
