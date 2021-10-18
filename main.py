@@ -1,6 +1,15 @@
 from PIL import Image, ImageSequence
 import sys
 
+def get_gif_frames_average_duration(gif):
+    return int(round(sum([frame.info['duration'] for frame in ImageSequence.Iterator(gif)])/gif.n_frames,-1))
+
+def get_gif_first_frame_duration(gif):
+    return gif.info['duration']
+
+def get_gif_frames_duration(gif):
+    return [frame.info['duration'] for frame in ImageSequence.Iterator(gif)]
+
 colors = {
     "white": (255,255,255),
     "red": (255,0,0),
@@ -9,10 +18,16 @@ colors = {
     "black": (0,0,0)
 }
 
-def get_gif_frames_and_duration(gif_filename):
+duration_calculation_modes = {
+    "average": get_gif_frames_average_duration,
+    "first": get_gif_first_frame_duration,
+    "individual": get_gif_frames_duration
+}
+
+def get_gif_frames_and_duration(gif_filename,duration_calculation_mode):
     gif = Image.open(gif_filename)
     gif_frames = []
-    gif_durations = []
+    gif_duration = duration_calculation_modes[duration_calculation_mode](gif)
     pal = gif.getpalette()
     canvas = gif.convert('RGBA')
     first = True
@@ -28,8 +43,7 @@ def get_gif_frames_and_duration(gif_filename):
         
         canvas.paste(frame, dimensions, frame.convert('RGBA'))
         gif_frames.append(canvas.copy())
-        gif_durations.append(frame.info['duration'])
-    return [gif_frames, gif_durations]
+    return [gif_frames, gif_duration]
 
 def add_progress_bar_to_images(gif_frames,bar_height,rgb_color):
     for frame_index, frame in enumerate(gif_frames):
@@ -67,7 +81,8 @@ def main():
     rgb_color = colors[arguments['color']] if 'color' in arguments and arguments['color'] in colors else colors["blue"]
     bar_height = int(arguments['height']) if 'height' in arguments and arguments['height'].isnumeric() else 3
     output_file = arguments['out'] if 'out' in arguments else 'progress_bar_{}'.format(filename)
-    frames, durations = get_gif_frames_and_duration(filename)
+    duration_calculation_mode = arguments['duration-calculation-mode'] if 'duration-calculation-mode' in arguments and arguments['duration-calculation-mode'] in duration_calculation_modes else 'average'
+    frames, durations = get_gif_frames_and_duration(filename,duration_calculation_mode)
     frames_with_progress_bar = add_progress_bar_to_images(frames,bar_height,rgb_color)
     assemble_and_save_gif(output_file,durations,frames_with_progress_bar)
 
