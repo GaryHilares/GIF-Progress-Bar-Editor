@@ -24,6 +24,11 @@ py main.py ${your filename}
 
 That's it! The script does the rest.
 
+You can also choose a color of our selection. To do so, just use the command
+```
+py main.py ${your filename} ${color name}
+```
+
 ## License
 All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
 
