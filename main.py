@@ -1,5 +1,6 @@
 from PIL import Image, ImageSequence
 import sys
+import json
 
 colors = {
     "white": (255,255,255),
@@ -15,29 +16,19 @@ def get_gif_frames_and_duration(gif_filename):
     gif_duration = gif.info['duration']
     pal = gif.getpalette()
     prev = gif.convert('RGBA')
-    prev_dispose = True
+    first = True
     for frame in ImageSequence.Iterator(gif):
-        dispose = frame.dispose
-
-        if frame.tile:
-            x0, y0, x1, y1 = frame.tile[0][1]
+        if first:
+            dimensions = None
+            first = False
+        else:
+            dimensions = frame.tile[0][1]
             if not frame.palette.dirty:
-                frame.putpalette(pal)
-            frame = frame.crop((x0, y0, x1, y1))
-            bbox = (x0, y0, x1, y1)
-        else:
-            bbox = None
-
-        if dispose is None:
-            prev.paste(frame, bbox, frame.convert('RGBA'))
-            gif_frames.append(prev.copy())
-            prev_dispose = False
-        else:
-            if prev_dispose:
-                prev = Image.new('RGBA', gif.size, (0, 0, 0, 0))
-            out = prev.copy()
-            out.paste(frame, bbox, frame.convert('RGBA'))
-            gif_frames.append(out.copy())
+                frame.putpalette(pal)                
+            frame = frame.crop(dimensions)
+        
+        prev.paste(frame, dimensions, frame.convert('RGBA'))
+        gif_frames.append(prev.copy())
     return [gif_frames, gif_duration]
 
 def add_progress_bar_to_images(gif_frames,bar_height,rgb_color):
