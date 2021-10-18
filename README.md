@@ -37,7 +37,9 @@ Where:
 ### Example
 Before:
 
-![Supple-Crystal](https://user-images.githubusercontent.com/46727048/137753081-ce02743a-720e-4200-9b8b-2b540338b8da.gif)
+<p align="center">
+   <img alt="Supple-Crystal" src="https://user-images.githubusercontent.com/46727048/137753081-ce02743a-720e-4200-9b8b-2b540338b8da.gif" />
+</p>
 
 Command:
 
@@ -45,7 +47,9 @@ Command:
 
 After:
 
-![my_gif](https://user-images.githubusercontent.com/46727048/137754676-2c59810c-d977-4b91-ae4b-959382c36a31.gif)
+<p align="center">
+   <img alt="my_gif" src="https://user-images.githubusercontent.com/46727048/137754676-2c59810c-d977-4b91-ae4b-959382c36a31.gif" />
+</p>
 
 Image taken from [Supple Crystal](https://github.com/GaryNLOL/Supple-Crystal/).
 
