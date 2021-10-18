@@ -1,10 +1,6 @@
 from PIL import Image, ImageSequence
 import sys
 
-if len(sys.argv) == 1:
-    print('Insufficient arguments')
-    sys.exit()
-
 def get_gif_frames_and_duration(gif_filename):
     gif = Image.open(sys.argv[1])
     gif_frames = []
@@ -52,6 +48,9 @@ def assemble_and_save_gif(target_filename,gif_duration,gif_frames):
                    duration=gif_duration, loop=0)
 
 def main():
+    if len(sys.argv) == 1:
+        print('Insufficient arguments')
+        sys.exit()
     filename = sys.argv[1]
     frames, duration = get_gif_frames_and_duration(filename)
     frames_with_progress_bar = add_progress_bar_to_images(frames)
