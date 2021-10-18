@@ -54,13 +54,10 @@ def line():
         im.save(".gif_progress_bar_tmp/foo{}.png".format(i))
 
 def ensamble():
-    # Create the frames
     frames = []
     for i in range(gif_frames_number):
         new_frame = Image.open('.gif_progress_bar_tmp/foo{}.png'.format(i))
         frames.append(new_frame)
-    
-    # Save into a GIF file that loops forever
     frames[0].save('progress_bar_{}'.format(gif_filename), format='GIF',
                    append_images=frames[1:],
                    save_all=True,
