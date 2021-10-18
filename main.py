@@ -1,6 +1,5 @@
 from PIL import Image, ImageSequence
 import sys
-import os
 
 if len(sys.argv) == 1:
     print('Insufficient arguments')
