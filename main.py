@@ -16,7 +16,7 @@ def get_gif_frames_and_duration(gif_filename):
     pal = gif.getpalette()
     prev = gif.convert('RGBA')
     prev_dispose = True
-    for i, frame in enumerate(ImageSequence.Iterator(gif)):
+    for frame in ImageSequence.Iterator(gif):
         dispose = frame.dispose
 
         if frame.tile:
@@ -41,9 +41,9 @@ def get_gif_frames_and_duration(gif_filename):
     return [gif_frames, gif_duration]
 
 def add_progress_bar_to_images(gif_frames,bar_height,rgb_color):
-    for frame_index in range(len(gif_frames)):
-        width, height = gif_frames[frame_index].size
-        pixels = gif_frames[frame_index].load()
+    for frame_index, frame in enumerate(gif_frames):
+        width, height = frame.size
+        pixels = frame.load()
         for x in range(int(width*frame_index/len(gif_frames))):
             for y_offset in range(1,bar_height+1):
                 pixels[x, height-y_offset] = rgb_color
