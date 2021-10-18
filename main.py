@@ -5,13 +5,12 @@ if len(sys.argv) == 1:
     print('Insufficient arguments')
     sys.exit()
 
-gif_filename = sys.argv[1]
-gif = Image.open(gif_filename)
+gif = Image.open(sys.argv[1])
 gif_duration = gif.info['duration']
 gif_frames_number = gif.n_frames
 width, height = gif.size
 
-def get_frames():
+def get_frames(gif_filename):
     gif_frames = []
     pal = gif.getpalette()
     prev = gif.convert('RGBA')
@@ -49,14 +48,15 @@ def add_progress_bar_to_images(gif_frames):
             pixels[j, height-1] = (0, 0, 255)
     return gif_frames
 
-def assemble_and_save_gif(gif_frames):
-    gif_frames[0].save('progress_bar_{}'.format(gif_filename), format='GIF',
+def assemble_and_save_gif(target_filename,gif_frames):
+    gif_frames[0].save(target_filename, format='GIF',
                    append_images=gif_frames[1:],
                    save_all=True,
                    duration=gif_duration, loop=0)
 
 def main():
-    assemble_and_save_gif(add_progress_bar_to_images(get_frames()))
+    gif_filename = sys.argv[1]
+    assemble_and_save_gif('progress_bar_{}'.format(gif_filename),add_progress_bar_to_images(get_frames(gif_filename)))
 
 if __name__ == '__main__':
     main()
