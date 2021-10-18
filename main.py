@@ -14,7 +14,7 @@ def get_gif_frames_and_duration(gif_filename):
     gif_frames = []
     gif_durations = []
     pal = gif.getpalette()
-    prev = gif.convert('RGBA')
+    canvas = gif.convert('RGBA')
     first = True
     for frame in ImageSequence.Iterator(gif):
         if first:
@@ -26,8 +26,8 @@ def get_gif_frames_and_duration(gif_filename):
                 frame.putpalette(pal)                
             frame = frame.crop(dimensions)
         
-        prev.paste(frame, dimensions, frame.convert('RGBA'))
-        gif_frames.append(prev.copy())
+        canvas.paste(frame, dimensions, frame.convert('RGBA'))
+        gif_frames.append(canvas.copy())
         gif_durations.append(frame.info['duration'])
     return [gif_frames, gif_durations]
 
