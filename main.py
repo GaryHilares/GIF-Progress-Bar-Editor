@@ -5,17 +5,15 @@ import os
 if len(sys.argv) == 1:
     print('Insufficient arguments')
     sys.exit()
+
 gif_filename = sys.argv[1]
 gif = Image.open(gif_filename)
 gif_duration = gif.info['duration']
 gif_frames_number = gif.n_frames
 width, height = gif.size
+gif_frames = []
 
 def separate():
-    try:
-        os.mkdir('.gif_progress_bar_tmp')
-    except:
-        pass
     pal = gif.getpalette()
     prev = gif.convert('RGBA')
     prev_dispose = True
@@ -33,39 +31,31 @@ def separate():
 
         if dispose is None:
             prev.paste(frame, bbox, frame.convert('RGBA'))
-            prev.save('.gif_progress_bar_tmp/foo{}.png'.format(i))
+            gif_frames.append(prev.copy())
             prev_dispose = False
         else:
             if prev_dispose:
                 prev = Image.new('RGBA', gif.size, (0, 0, 0, 0))
             out = prev.copy()
             out.paste(frame, bbox, frame.convert('RGBA'))
-            out.save('.gif_progress_bar_tmp/foo{}.png'.format(i))
+            gif_frames.append(out.copy())
 
 def line():
     for i in range(gif_frames_number):
-        im = Image.open(".gif_progress_bar_tmp/foo{}.png".format(i))
-        pixels = im.load()
+        pixels = gif_frames[i].load()
         for j in range(int(width*i/gif_frames_number)):
             pixels[j, height-3] = (0, 0, 255)
             pixels[j, height-2] = (0, 0, 255)
             pixels[j, height-1] = (0, 0, 255)
-        im.save(".gif_progress_bar_tmp/foo{}.png".format(i))
 
 def ensamble():
-    frames = []
-    for i in range(gif_frames_number):
-        new_frame = Image.open('.gif_progress_bar_tmp/foo{}.png'.format(i))
-        frames.append(new_frame)
-    frames[0].save('progress_bar_{}'.format(gif_filename), format='GIF',
-                   append_images=frames[1:],
+    gif_frames[0].save('progress_bar_{}'.format(gif_filename), format='GIF',
+                   append_images=gif_frames[1:],
                    save_all=True,
                    duration=gif_duration, loop=0)
 
 def clean():
-    for i in range(gif_frames_number):
-        os.remove('.gif_progress_bar_tmp/foo{}.png'.format(i))
-    os.rmdir('.gif_progress_bar_tmp')
+    pass
 
 def main():
     separate()
