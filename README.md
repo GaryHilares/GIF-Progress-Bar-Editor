@@ -1,6 +1,4 @@
-<h1 align="center">
-  GIF Progress Bar Editor
-</h1>
+<h1 align="center">GIF Progress Bar Editor</h1>
 
 <p align="center">
   <img alt="badge-lastcommit" src="https://img.shields.io/github/last-commit/GaryNLOL/GIF_Progress_Bar_Editor?style=for-the-badge">
@@ -13,28 +11,34 @@
 ## What is GIF Progress Bar Editor?
 GIF Progress Bar Editor is a tool that provides an easy and fast way to add a progress bar to your GIF.
 
+### Platforms
+- Cross-platform
+
 ### Dependencies
-- [Pillow](https://pillow.readthedocs.io/en/stable/#).
+#### Development & Use
+- Python
+- PIP
 
-## Usage
-### Installation
+## Motivation
+This application is useful for those who like to add progress bars to GIFs, but don't have a simple way to do it.
+
+## Installation and usage
 Source code:
-1. Clone the GitHub repository.
-2. Install the dependencies with `pip install -r requirements.txt`.
+1. Fork the repository on GitHub.
+2. Go to your fork of the repository and copy the link to clone your repository.
+3. Go to Git on your local machine and use the command `git clone (your link)`.
+4. Install the dependencies with `pip install -r requirements.txt`.
 
-That's it!
-
-### Commands
-Just use the command:
+After doing this, you should be able to run GIF Progress Bar Editor by executing `main.py` from the command line using Python. Just use the command:
 ```python3
-py main.py ${your filename}
+python3 main.py ${your filename}
 ```
 
 That's it! The script does the rest.
 
 There are also optional parameters that allow you to personalize your gif:
 ```python3
-py main.py ${your filename} color=${your color} out=${your output filename} height=${your progress bar height}
+python3 main.py ${your filename} color=${your color} out=${your output filename} height=${your progress bar height}
 ```
 Where:
 - `color` is a name color (Currently only colors in `['white','red','green','blue','black']` are supported) representing the color of the progress bar.
@@ -60,10 +64,10 @@ After:
 
 Image taken from [Supple Crystal](https://github.com/GaryNLOL/Supple-Crystal/).
 
-## License
-This work is licensed under a [Creative Commons Attribution 4.0 International License](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
-
 ## Contributors
 Thanks to these wonderful people for making GIF Progress Bar Editor possible!
 
-<p align="center"><a href="https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/graphs/contributors"><img src="https://contrib.rocks/image?repo=GaryNLOL/GIF_Progress_Bar_Editor" /></a></p>
+<p align="center"><a href="https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/graphs/contributors"><img src="https://contrib.rocks/image?repo=GaryNLOL/GIF_Progress_Bar_Editor"></a></p>
+
+## License
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
