@@ -61,7 +61,7 @@ After:
 Image taken from [Supple Crystal](https://github.com/GaryNLOL/Supple-Crystal/).
 
 ## License
-All the code owned in this repository is under the [MIT license](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://github.com/GaryNLOL/GIF_Progress_Bar_Editor/blob/main/LICENSE).
 
 ## Contributors
 Thanks to these wonderful people for making GIF Progress Bar Editor possible!
